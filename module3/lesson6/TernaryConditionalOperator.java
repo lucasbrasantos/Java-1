@@ -29,6 +29,7 @@ public class TernaryConditionalOperator {
 
         System.out.println(raining);
 
+        input.close();
 
         ///////////////////
 
