@@ -38,4 +38,67 @@ This course provides an introduction to the Java programming language. It offers
 
 ---
 
-Embark on this journey to learn Java and begin your adventure into the world of object-oriented programming. Happy coding! 🚀
+## 📂 Repository Structure
+The repository is organized into files corresponding to different parts of the course:
+
+## Folder Structure
+
+```
+src/
+├── module1
+│   ├── FahrenheitToCelsius.java
+│   └── HelloWorld.java
+├── module2
+│   ├── HW01
+│   │   ├── Bad1.java
+│   │   ├── Bad2.java
+│   │   ├── Bad3.java
+│   │   ├── PrimitiveOperations.java
+│   │   └── StringOperations.java
+│   ├── lesson3
+│   │   ├── ArithmeticExpressions.java
+│   │   ├── ConstantTest.java
+│   │   ├── DividedByZeroTest.java
+│   │   ├── PrimitiveTypes.java
+│   │   ├── TypesOfComments.java
+│   │   └── WhiteSpaces.java
+│   ├── lesson4
+│   │   ├── OtherStringMethods.java
+│   │   ├── StringMethods.java
+│   │   └── _String.java
+│   └── lesson5
+│       ├── CurrencyDemo.java
+│       ├── DecimalFormatDemo.java
+│       ├── FormattedPrint.java
+│       └── ScannerBasics.java
+├── module3
+│   ├── HM02
+│   │   └── Calculator.java
+│   ├── lesson6
+│   │   ├── IfStatement.java
+│   │   ├── LogicalOperators.java
+│   │   ├── LogicalOperators.md
+│   │   ├── OtherOperators.java
+│   │   ├── SwitchCaseExample.java
+│   │   └── TernaryConditionalOperator.java
+│   └── lesson7
+│       ├── BreakStatementExample.java
+│       ├── ContinueStatementExample.java
+│       ├── DoWhileStatement.java
+│       ├── ForStatement.java
+│       └── WhileStatement.java
+├── module4
+│   ├── HW03
+│   │   ├── Battleship.java
+│   │   └── instructions.pdf
+│   ├── lesson8
+│   │   ├── ArraySearch.java
+│   │   ├── Arrays.java
+│   │   ├── Arrays2D.java
+│   │   ├── Arrays2DProcessing.java
+│   │   └── Avarager.java
+│   └── lesson9
+│       ├── ArraySearch.java
+│       ├── Methods.java
+│       └── SomeAnotherProgram.java
+```
