@@ -89,7 +89,7 @@ src/
 │       └── WhileStatement.java
 ├── module4
 │   ├── HW03
-│   │   ├── Battleship.java
+│   │   ├── Battleship.java (in development)
 │   │   └── instructions.pdf
 │   ├── lesson8
 │   │   ├── ArraySearch.java
