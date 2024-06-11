@@ -1,5 +1,9 @@
 package module4.HW03;
 
+
+import java.io.Console;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Battleship {
@@ -9,8 +13,15 @@ public class Battleship {
 
     static final String shipChar = "@";
     static final String bgChar = "*";
-    static final String hitShip = "X";
+    static final String firedShip = "X";
     static final String firedBg = "O";
+
+    
+
+    static boolean victory = false;
+    static boolean switchPlayer = false;
+    // switchPlayer -> false = p1
+    // switchPlayer -> true = p2
 
     static final Scanner input = new Scanner(System.in);
 
@@ -25,58 +36,92 @@ public class Battleship {
         System.out.println("===============");
         System.out.println("-- BATTLESHIP --");
         System.out.println("===============");
-        System.out.println();
+        System.out.println(); 
         System.out.println("Welcome to Battleship!");
         printExample();
+
+        pressEnterToContinue();
 
         Battleship game = new Battleship(5, 5);
 
         /* GET PLAYER POSITIONS */
-        String p1_pos[] = getPlayerPositions("Player 1");
-        String p2_pos[] = getPlayerPositions("Player 2");
+        // String p1_pos[] = getPlayerPositions("Player 1");
+        // String p2_pos[] = getPlayerPositions("Player 2");
 
+        String ex_p1_pos[] = {"A1", "B2", "C3", "D4", "E5"};
+        String ex_p2_pos[] = {"A1", "B2", "C3", "D4", "E5"};
+        
         /* PLACE SHIPS */
-        game.placeShips(p1_pos, p2_pos);
+        // game.placeShips(p1_pos, p2_pos);
+        game.placeShips(ex_p1_pos, ex_p2_pos);
         
-        printGrid(game.grid1);
-        System.out.println();
-        printGrid(game.grid2);
-        
-        /* LOOP DO JOGO */
-
-        boolean victory = false;
 
         while (!victory) {
             
-            switch (game.playerAtack()) {
+            printBoard(game);
+
+            
+            int attackResult = game.playerAttack();
+
+            switch (attackResult) {
                 case 0:
-                    
+                    System.out.println("Already hit that spot.");
                     break;
                 case 1:
-                    
+                    System.out.println("Oh, you missed!");
                     break;
                 case 2:
-                    
+                    System.out.println("Oh, you hit a ship!");
                     break;
-            
                 default:
+                    System.out.println("Error in attack!");
                     break;
             }
-
+            
+            switchPlayer = !switchPlayer;
         }
                 
     }
 
-    private byte playerAtack(){
-        System.out.printf("--> Insert your atack, ex: (a2)\n");
+    public static void printBoard(Battleship game){
+        System.out.print("\n\n\n");
         
+        if (switchPlayer) {
+            printGrid(game.grid1);
+        }else{
+            printGrid(game.grid2);
+        }
+        System.out.print("------------------------\n"); 
+    }
+
+    private int playerAttack(){
+        if (!switchPlayer) {
+            System.out.printf("-- PLAYER 1 --");
+        }else{
+            System.out.printf("-- PLAYER 2 --");
+        }
+        System.out.printf("--> Insert your atack, ex: (a2)\n");        
         String atk_pos = input.nextLine();
 
         int pos[] = getGridPosition(atk_pos);
-        
+        // System.out.println("your atack is: "+Arrays.toString(pos));
+        String[][] atkGrid = switchPlayer ? grid1 : grid2;
 
 
-        return result;
+        switch (atkGrid[pos[0]][pos[1]]) {
+            case bgChar: // hit background
+                atkGrid[pos[0]][pos[1]] = firedBg;
+                return 1; // Miss
+            case shipChar: // hit ship
+                atkGrid[pos[0]][pos[1]] = firedShip;
+                return 2; // Hit
+                
+            case firedBg: // already hit background
+            case firedShip: // already hit ship
+                return 0; // Already hit
+            default:
+                return -1; // Invalid
+        }
     }
 
     public static String[] getPlayerPositions(String playername){
@@ -102,7 +147,8 @@ public class Battleship {
             
         for (String e : positions) {
             
-            int pos[] =  getGridPosition(e);
+            int pos[] = getGridPosition(e);
+            
             
             // pos[0] = rows
             // pos[1] = cols
@@ -113,19 +159,25 @@ public class Battleship {
     }
 
     private int[] getGridPosition(String position){
+        position = position.toUpperCase();
+
         int rowPos = Character.getNumericValue(position.charAt(1));
+        // System.out.println("rowPos: "+rowPos);        
         rowPos = (rowPos == 5) ? 0 :
             (rowPos == 4) ? 1 :
             (rowPos == 3) ? 2 :
             (rowPos == 2) ? 3 :
             (rowPos == 1) ? 4 : 0; 
 
+
         int colPos = position.charAt(0);
+        // System.out.println("colPos: "+colPos);
         colPos = (colPos == 'A') ? 0 :
             (colPos == 'B') ? 1 :
             (colPos == 'C') ? 2 :
             (colPos == 'D') ? 3 :
             (colPos == 'E') ? 4 : 0;
+
 
         int result[] = {rowPos, colPos};
         return result;
@@ -193,6 +245,12 @@ public class Battleship {
             System.out.println();
         }
         System.out.println("\n");
+    }
+
+    private static void pressEnterToContinue() {
+        System.out.println("Press Enter to continue...");
+        input.nextLine();
+        
     }
 
 }
