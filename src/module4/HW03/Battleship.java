@@ -1,9 +1,5 @@
 package module4.HW03;
 
-
-import java.io.Console;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Battleship {
